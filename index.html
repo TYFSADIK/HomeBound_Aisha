@@ -1,1 +1,1214 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homebound Recipe | Authentic Homemade Cuisine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #e67e22;
+            --primary-dark: #d35400;
+            --secondary: #27ae60;
+            --accent: #e74c3c;
+            --dark: #2c3e50;
+            --light: #f9f9f9;
+            --gray: #95a5a6;
+            --light-bg: #fff8f0;
+            --font-main: 'Poppins', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--dark);
+            display: inline-block;
+            background: var(--light-bg);
+            padding: 0 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            z-index: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(230, 126, 34, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.4s;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 55px;
+            margin-right: 12px;
+        }
+        
+        .logo h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 35px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        /* Menu Section */
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
+        }
+        
+        .menu-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-content {
+            padding: 25px;
+        }
+        
+        .menu-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .menu-title h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .menu-price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .menu-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .menu-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        /* Combo Section */
+        .combo-section {
+            background: linear-gradient(to right, #fffbf7, #fff5eb);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .combo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            opacity: 0.05;
+            background-size: cover;
+        }
+        
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 35px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .combo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s;
+            border: 1px solid rgba(230, 126, 34, 0.2);
+        }
+        
+        .combo-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .combo-header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .combo-header h3 {
+            font-size: 1.9rem;
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+        }
+        
+        .combo-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .combo-body {
+            padding: 25px;
+            flex-grow: 1;
+        }
+        
+        .combo-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .combo-features li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .combo-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .combo-features li i {
+            color: var(--secondary);
+            margin-right: 12px;
+            min-width: 20px;
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+        
+        .combo-footer {
+            padding: 0 25px 25px;
+            text-align: center;
+        }
+        
+        /* Order Section */
+        .order-section {
+            background: linear-gradient(to right, var(--dark), #1a2530);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .order-container {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .order-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 220px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 25px;
+            font-family: var(--font-heading);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .step p {
+            color: #bdc3c7;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 45px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            padding: 3px 0;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 15px;
+            min-width: 24px;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            height: 45px;
+            width: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-7px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #95a5a6;
+            font-size: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .order-steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 85px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 25px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .combo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Homebound <span>Recipe</span></h1>
+            </div>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#combos">Combos</a></li>
+                    <li><a href="#order">Order</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Authentic Homemade Recipes Delivered to Your Door</h1>
+                <p>Experience the comfort of home-cooked meals crafted with love and tradition. Every dish tells a story of heritage and flavor.</p>
+                <div class="hero-btns">
+                    <a href="#menu" class="btn">Explore Our Menu</a>
+                    <a href="tel:+1234567890" class="btn btn-secondary"><i class="fas fa-phone"></i> Call to Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Signature Dishes</h2>
+            </div>
+            
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">All Items</button>
+                <button class="filter-btn" data-filter="beef">Beef</button>
+                <button class="filter-btn" data-filter="fish">Fish</button>
+                <button class="filter-btn" data-filter="chicken">Chicken</button>
+                <button class="filter-btn" data-filter="vegetable">Vegetable</button>
+                <button class="filter-btn" data-filter="rice">Rice</button>
+                <button class="filter-btn" data-filter="egg">Egg</button>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Beef Items -->
+                <div class="menu-card" data-category="beef">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603360946369-dc9bbd814503?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Beef Aloo Jhol</h3>
+                            <span class="menu-price">$20/1kg</span>
+                        </div>
+                        <p class="menu-desc">Tender beef cooked with potatoes in a flavorful gravy</p>
+                        <div class="menu-badge">Special Offer: 2kg for $40</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card" data-category="beef">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1606851094291-6efae152bb87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Beef Bhuna</h3>
+                            <span class="menu-price">$20/1kg</span>
+                        </div>
+                        <p class="menu-desc">Spicy dry beef curry with rich flavors</p>
+                        <div class="menu-badge">Special Offer: 2kg for $40</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card" data-category="beef">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1606851094291-6efae152bb87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Beef Rezala</h3>
+                            <span class="menu-price">$25/1kg</span>
+                        </div>
+                        <p class="menu-desc">Mild and creamy beef curry with yogurt</p>
+                        <div class="menu-badge">Special Offer: 2kg for $50</div>
+                    </div>
+                </div>
+                
+                <!-- Fish Items -->
+                <div class="menu-card" data-category="fish">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1610024062303-e355aa103c57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Rui Bhuna/Dopeyaja</h3>
+                            <span class="menu-price">$20</span>
+                        </div>
+                        <p class="menu-desc">4-5 pieces of Rui fish cooked in traditional style</p>
+                    </div>
+                </div>
+                
+                <div class="menu-card" data-category="fish">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Elish Fry/Shorshe</h3>
+                            <span class="menu-price">$30</span>
+                        </div>
+                        <p class="menu-desc">Hilsa fish prepared with mustard or fried</p>
+                    </div>
+                </div>
+                
+                <!-- Chicken Items -->
+                <div class="menu-card" data-category="chicken">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603360946369-dc9bbd814503?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Chicken Roast</h3>
+                            <span class="menu-price">$25/4pc</span>
+                        </div>
+                        <p class="menu-desc">Juicy roasted chicken with special spices</p>
+                        <div class="menu-badge">6pc for $35</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card" data-category="chicken">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Tandoori Chicken</h3>
+                            <span class="menu-price">$20/4pc</span>
+                        </div>
+                        <p class="menu-desc">Marinated chicken cooked in traditional tandoor</p>
+                        <div class="menu-badge">6pc for $30</div>
+                    </div>
+                </div>
+                
+                <!-- Rice Items -->
+                <div class="menu-card" data-category="rice">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Chicken Biriyani</h3>
+                            <span class="menu-price">$15</span>
+                        </div>
+                        <p class="menu-desc">Fragrant rice with chicken and aromatic spices</p>
+                    </div>
+                </div>
+                
+                <div class="menu-card" data-category="rice">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1488&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Tehari</h3>
+                            <span class="menu-price">$20</span>
+                        </div>
+                        <p class="menu-desc">Spiced rice dish with meat and potatoes</p>
+                    </div>
+                </div>
+                
+                <!-- Vegetable Items -->
+                <div class="menu-card" data-category="vegetable">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Mixed Vegetable</h3>
+                            <span class="menu-price">$15</span>
+                        </div>
+                        <p class="menu-desc">Seasonal vegetables cooked to perfection</p>
+                    </div>
+                </div>
+                
+                <div class="menu-card" data-category="vegetable">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Lau Chingri</h3>
+                            <span class="menu-price">$15</span>
+                        </div>
+                        <p class="menu-desc">Bottle gourd with shrimp in light gravy</p>
+                    </div>
+                </div>
+                
+                <!-- Egg Items -->
+                <div class="menu-card" data-category="egg">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1606728035253-49e8a23146de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Egg Bhuna</h3>
+                            <span class="menu-price">$15</span>
+                        </div>
+                        <p class="menu-desc">6-8 pieces of eggs in spicy masala</p>
+                    </div>
+                </div>
+                
+                <!-- Rice Items -->
+                <div class="menu-card" data-category="rice">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="menu-content">
+                        <div class="menu-title">
+                            <h3>Khichuri</h3>
+                            <span class="menu-price">$15</span>
+                        </div>
+                        <p class="menu-desc">Comforting rice and lentil dish with spices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combo Section -->
+    <section class="combo-section" id="combos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Special Combo Deals</h2>
+            </div>
+            
+            <div class="combo-grid">
+                <!-- Combo 1 -->
+                <div class="combo-card">
+                    <div class="combo-header">
+                        <h3>Family Combo</h3>
+                        <div class="combo-price">$65</div>
+                    </div>
+                    <div class="combo-body">
+                        <ul class="combo-features">
+                            <li><i class="fas fa-utensils"></i> Beef (750g) or Rui/Pabda (4-5pc)</li>
+                            <li><i class="fas fa-drumstick-bite"></i> Chicken (750g)</li>
+                            <li><i class="fas fa-carrot"></i> Mixed Vegetable (28oz)</li>
+                            <li><i class="fas fa-mortar-pestle"></i> Bhorta / Daal (Any 1)</li>
+                        </ul>
+                    </div>
+                    <div class="combo-footer">
+                        <a href="tel:+1234567890" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+                <!-- Combo 2 -->
+                <div class="combo-card">
+                    <div class="combo-header">
+                        <h3>Premium Combo</h3>
+                        <div class="combo-price">$75</div>
+                    </div>
+                    <div class="combo-body">
+                        <ul class="combo-features">
+                            <li><i class="fas fa-utensils"></i> Beef (750g) or Rui/Pabda (4-5pc)</li>
+                            <li><i class="fas fa-drumstick-bite"></i> Chicken (750g)</li>
+                            <li><i class="fas fa-carrot"></i> Vegetable (28oz) of choice</li>
+                            <li><i class="fas fa-egg"></i> Egg Curry (4pc)</li>
+                            <li><i class="fas fa-mortar-pestle"></i> Daal & Any one Bhorta</li>
+                        </ul>
+                    </div>
+                    <div class="combo-footer">
+                        <a href="tel:+1234567890" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+                <!-- Combo 5 -->
+                <div class="combo-card">
+                    <div class="combo-header">
+                        <h3>Grand Feast</h3>
+                        <div class="combo-price">$130</div>
+                    </div>
+                    <div class="combo-body">
+                        <ul class="combo-features">
+                            <li><i class="fas fa-utensils"></i> Beef (2kg)</li>
+                            <li><i class="fas fa-fish"></i> Fish (8pc) of choice</li>
+                            <li><i class="fas fa-drumstick-bite"></i> Chicken (1kg)</li>
+                            <li><i class="fas fa-egg"></i> Egg (8pc)</li>
+                            <li><i class="fas fa-carrot"></i> 2 boxes Vegetable (16oz each)</li>
+                            <li><i class="fas fa-mortar-pestle"></i> Any 2 Bhorta & Daal</li>
+                        </ul>
+                    </div>
+                    <div class="combo-footer">
+                        <a href="tel:+1234567890" class="btn">Order Now</a>
+                    </div>
+                </div>
+                
+                <!-- Student Special -->
+                <div class="combo-card">
+                    <div class="combo-header">
+                        <h3>Student Special</h3>
+                        <div class="combo-price">$55</div>
+                    </div>
+                    <div class="combo-body">
+                        <ul class="combo-features">
+                            <li><i class="fas fa-utensils"></i> Beef (750g) or Rui (4-5pc)</li>
+                            <li><i class="fas fa-drumstick-bite"></i> Chicken (750g)</li>
+                            <li><i class="fas fa-mortar-pestle"></i> Daal</li>
+                            <li><i class="fas fa-carrot"></i> Vegetable (16oz x 2)</li>
+                        </ul>
+                    </div>
+                    <div class="combo-footer">
+                        <a href="tel:+1234567890" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <div class="section-title">
+                <h2>How To Order</h2>
+            </div>
+            
+            <div class="order-container">
+                <p class="animate">Order your favorite home-style meals in just a few simple steps. Confirm your order by 9:00 PM for same-day delivery.</p>
+                
+                <div class="order-steps">
+                    <div class="step animate" style="animation-delay: 0.2s">
+                        <div class="step-number">1</div>
+                        <h3>Browse Our Menu</h3>
+                        <p>Explore our delicious homemade offerings</p>
+                    </div>
+                    
+                    <div class="step animate" style="animation-delay: 0.4s">
+                        <div class="step-number">2</div>
+                        <h3>Call or Message</h3>
+                        <p>Place your order by phone or WhatsApp</p>
+                    </div>
+                    
+                    <div class="step animate" style="animation-delay: 0.6s">
+                        <div class="step-number">3</div>
+                        <h3>Confirm Order</h3>
+                        <p>We'll confirm your order and delivery time</p>
+                    </div>
+                    
+                    <div class="step animate" style="animation-delay: 0.8s">
+                        <div class="step-number">4</div>
+                        <h3>Enjoy Your Meal</h3>
+                        <p>Receive delicious food at your doorstep</p>
+                    </div>
+                </div>
+                
+                <p class="animate" style="animation-delay: 1s"><strong>Note:</strong> Home delivery available with delivery charges. Items can be replaced from individual menus.</p>
+                
+                <div class="animate" style="margin-top: 50px; animation-delay: 1.2s">
+                    <a href="tel:+1234567890" class="btn"><i class="fas fa-phone"></i> Call to Order: (123) 456-7890</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Homebound Recipe</h3>
+                    <p>Serving authentic homemade meals with love and tradition. Our recipes are crafted with care using the finest ingredients.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#combos">Combos</a></li>
+                        <li><a href="#order">How to Order</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Kitchen Street, Foodville</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> order@homeboundrecipe.com</li>
+                        <li><i class="fas fa-clock"></i> Daily: 10:00 AM - 10:00 PM</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Delivery Info</h3>
+                    <ul class="footer-links">
+                        <li>Order by 9:00 PM for same-day delivery</li>
+                        <li>Delivery charges apply based on location</li>
+                        <li>Free delivery on orders over $100</li>
+                        <li>Items can be replaced from individual menus</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Homebound Recipe. All Rights Reserved. | Crafted with <i class="fas fa-heart" style="color: var(--accent);"></i> for food lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Menu filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const menuCards = document.querySelectorAll('.menu-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                menuCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                document.querySelector('nav ul').classList.remove('show');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.animate').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+    </script>
+</body>
+</html>
